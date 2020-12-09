@@ -31,7 +31,9 @@ inherit gettext
 
 PACKAGES_DYNAMIC =+ "^libgst.*"
 
-PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2 egl', '', d)}"
+# Disable as libgstgl_dispmanx_la-gstglwindow_dispmanx_egl.lo is broken
+PACKAGECONFIG_GL ?= ""
+# PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2 egl', '', d)}"
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'alsa', 'alsa', '', d)} \
