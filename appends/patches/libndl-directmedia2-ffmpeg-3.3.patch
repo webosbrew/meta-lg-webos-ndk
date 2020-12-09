@@ -1,0 +1,130 @@
+diff --git a/src/esplayer.cpp b/src/esplayer.cpp
+index ae4a572..a8ff947 100644
+--- a/src/esplayer.cpp
++++ b/src/esplayer.cpp
+@@ -212,22 +212,22 @@ int Esplayer::load(NDL_ESP_META_DATA* meta)
+ 
+         switch (meta->audio_codec) {
+             case NDL_ESP_AUDIO_CODEC_MP2:
+-                codec_id = CODEC_ID_MP2;
++                codec_id = AV_CODEC_ID_MP2;
+                 break;
+             case NDL_ESP_AUDIO_CODEC_MP3:
+-                codec_id = CODEC_ID_MP3;
++                codec_id = AV_CODEC_ID_MP3;
+                 break;
+             case NDL_ESP_AUDIO_CODEC_AC3:
+-                codec_id = CODEC_ID_AC3;
++                codec_id = AV_CODEC_ID_AC3;
+                 break;
+             case NDL_ESP_AUDIO_CODEC_EAC3:
+-                codec_id = CODEC_ID_EAC3;
++                codec_id = AV_CODEC_ID_EAC3;
+                 break;
+             case NDL_ESP_AUDIO_CODEC_AAC:
+-                codec_id = CODEC_ID_AAC;
++                codec_id = AV_CODEC_ID_AAC;
+                 break;
+             case NDL_ESP_AUDIO_CODEC_HEAAC:
+-                codec_id = CODEC_ID_AAC_LATM;
++                codec_id = AV_CODEC_ID_AAC_LATM;
+                 break;
+             case NDL_ESP_AUDIO_CODEC_PCM_44100_2CH:
+             case NDL_ESP_AUDIO_CODEC_PCM_48000_2CH:
+diff --git a/tests/ffmpegreader.cpp b/tests/ffmpegreader.cpp
+index 33ec8f0..ca38069 100755
+--- a/tests/ffmpegreader.cpp
++++ b/tests/ffmpegreader.cpp
+@@ -46,7 +46,7 @@ size_t av_time_base_to_omx_framerate(AVRational fr) {
+ FfmpegReader::~FfmpegReader()
+ {
+     if(avfctx_)
+-        av_close_input_file(avfctx_);
++        avformat_close_input(&avfctx_);
+ }
+ 
+ bool FfmpegReader::init(const char* input_file)
+@@ -59,9 +59,9 @@ bool FfmpegReader::init(const char* input_file)
+         return false;
+     }
+ 
+-    result = av_find_stream_info(avfctx_);
++    result = avformat_find_stream_info(avfctx_, NULL);
+     if (result < 0) {
+-        fprintf(stderr, "av_find_stream_info: error %d\n", result);
++        fprintf(stderr, "avformat_find_stream_info: error %d\n", result);
+         return false;
+     }
+     //av_dump_format(avfctx_, 0, input_file, 0);
+@@ -70,8 +70,8 @@ bool FfmpegReader::init(const char* input_file)
+     {
+         if(enable_video_ && avfctx_->streams[i]->codec->codec_type==AVMEDIA_TYPE_VIDEO) {
+ 
+-            if((avfctx_->streams[i]->codec->codec_id == CODEC_ID_MPEG2VIDEO)
+-                    ||(avfctx_->streams[i]->codec->codec_id == CODEC_ID_H264)
++            if((avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_MPEG2VIDEO)
++                    ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_H264)
+                     ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_HEVC)
+               )
+             {
+@@ -97,10 +97,10 @@ bool FfmpegReader::init(const char* input_file)
+             }
+ 
+             switch(avfctx_->streams[i]->codec->codec_id) {
+-                case CODEC_ID_MPEG2VIDEO:
++                case AV_CODEC_ID_MPEG2VIDEO:
+                     video_codec_ = NDL_ESP_VIDEO_CODEC_H262;
+                     break;
+-                case CODEC_ID_H264:
++                case AV_CODEC_ID_H264:
+                     video_codec_ = NDL_ESP_VIDEO_CODEC_H264;
+                     break;
+                 case AV_CODEC_ID_HEVC:
+@@ -113,12 +113,12 @@ bool FfmpegReader::init(const char* input_file)
+             }
+         }
+         else if(enable_audio_ && avfctx_->streams[i]->codec->codec_type==AVMEDIA_TYPE_AUDIO) {
+-            if((avfctx_->streams[i]->codec->codec_id == CODEC_ID_MP2)
+-                    ||(avfctx_->streams[i]->codec->codec_id == CODEC_ID_MP3)
+-                    ||(avfctx_->streams[i]->codec->codec_id == CODEC_ID_AC3)
+-                    ||(avfctx_->streams[i]->codec->codec_id == CODEC_ID_EAC3)
+-                    ||(avfctx_->streams[i]->codec->codec_id == CODEC_ID_AAC)
+-                    ||(avfctx_->streams[i]->codec->codec_id == CODEC_ID_AAC_LATM)
++            if((avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_MP2)
++                    ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_MP3)
++                    ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_AC3)
++                    ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_EAC3)
++                    ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_AAC)
++                    ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_AAC_LATM)
+                     ||(avfctx_->streams[i]->codec->codec_id == AV_CODEC_ID_PCM_S16LE)
+               )
+             {
+@@ -149,22 +149,22 @@ bool FfmpegReader::init(const char* input_file)
+             }
+ 
+             switch(avfctx_->streams[i]->codec->codec_id) {
+-                case CODEC_ID_MP2:
++                case AV_CODEC_ID_MP2:
+                     audio_codec_ = NDL_ESP_AUDIO_CODEC_MP2;
+                     break;
+-                case CODEC_ID_MP3:
++                case AV_CODEC_ID_MP3:
+                     audio_codec_ = NDL_ESP_AUDIO_CODEC_MP3;
+                     break;
+-                case CODEC_ID_AC3:
++                case AV_CODEC_ID_AC3:
+                     audio_codec_ = NDL_ESP_AUDIO_CODEC_AC3;
+                     break;
+-                case CODEC_ID_EAC3:
++                case AV_CODEC_ID_EAC3:
+                     audio_codec_ = NDL_ESP_AUDIO_CODEC_EAC3;
+                     break;
+-                case CODEC_ID_AAC:
++                case AV_CODEC_ID_AAC:
+                     audio_codec_ = NDL_ESP_AUDIO_CODEC_AAC;
+                     break;
+-                case CODEC_ID_AAC_LATM:
++                case AV_CODEC_ID_AAC_LATM:
+                     audio_codec_ = NDL_ESP_AUDIO_CODEC_HEAAC;
+                     break;
+                 case AV_CODEC_ID_PCM_S16LE:

@@ -1,5 +1,5 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/patches:"
 
 SRC_URI_append = " \
-    file://libsdl2-ttf-disable-opengl.patch \
+    file://libndl-directmedia2-ffmpeg-3.3.patch \
 "

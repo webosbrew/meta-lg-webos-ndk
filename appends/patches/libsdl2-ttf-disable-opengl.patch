@@ -1,0 +1,13 @@
+diff --git a/configure.in b/configure.in
+index f300cae..3cd23e1 100644
+--- a/configure.in
++++ b/configure.in
+@@ -141,7 +141,7 @@ AC_TRY_COMPILE([
+ ],[
+  GLuint texture;
+ ],[
+-have_opengl=yes
++have_opengl=no
+ ])
+ AC_MSG_RESULT($have_opengl)
+ if test x$have_opengl = xyes; then
