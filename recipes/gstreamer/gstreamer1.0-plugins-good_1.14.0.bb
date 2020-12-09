@@ -53,9 +53,13 @@ PACKAGECONFIG[wavpack]    = "--enable-wavpack,--disable-wavpack,wavpack"
 PACKAGECONFIG[x11]        = "--enable-x,--disable-x,${X11DEPENDS}"
 PACKAGECONFIG[bz2]        = "--enable-bz2,--disable-bz2,bzip2"
 PACKAGECONFIG[zlib]       = "--enable-zlib,--disable-zlib,zlib"
-PACKAGECONFIG[lame]       = "--enable-lame,--disable-lame,lame"
-PACKAGECONFIG[mpg123]     = "--enable-mpg123,--disable-mpg123,mpg123"
-PACKAGECONFIG[gtk]        = "--enable-gtk3,--disable-gtk3,gtk+3"
+# Disable unsupported features
+PACKAGECONFIG[lame]       = ""
+PACKAGECONFIG[mpg123]     = ""
+PACKAGECONFIG[gtk]        = ""
+# PACKAGECONFIG[lame]       = "--enable-lame,--disable-lame,lame"
+# PACKAGECONFIG[mpg123]     = "--enable-mpg123,--disable-mpg123,mpg123"
+# PACKAGECONFIG[gtk]        = "--enable-gtk3,--disable-gtk3,gtk+3"
 
 # qt5 support is disabled, because it is not present in OE core, and requires more work than
 # just adding a packageconfig (it requires access to moc, uic, rcc, and qmake paths).
@@ -75,6 +79,9 @@ EXTRA_OECONF += " \
     --disable-shout2 \
     --disable-waveform \
     --disable-qt \
+    --disable-gtk3 \
+    --disable-lame \
+    --disable-mpg123 \
 "
 
 FILES_${PN}-equalizer += "${datadir}/gstreamer-1.0/presets/*.prs"
