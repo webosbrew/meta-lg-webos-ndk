@@ -34,8 +34,8 @@ PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'glx'
 
 PACKAGECONFIG ??= "drm \
                    ${PACKAGECONFIG_GL} \
-                   ${@bb.utils.filter('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
-                   ${@bb.utils.filter('DISTRO_FEATURES', 'x11', 'x11', '', d)}"
+                   ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
+                   ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)}"
 
 PACKAGECONFIG[drm] = "--enable-drm,--disable-drm,udev libdrm"
 PACKAGECONFIG[egl] = "--enable-egl,--disable-egl,virtual/egl"

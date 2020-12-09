@@ -1,5 +1,0 @@
-nativesdk-mesa|appends/nativesdk-mesa_17.1.7.bbappend|406a9381a2669f471cd6ec097aaef2b8
-mesa|appends/mesa_17.1.7.bbappend|66cc321ed53e4db292a3e76cbcad55f2
-libsdl2-ttf|appends/libsdl2-ttf_2.0.14.bbappend|e6d3caeb97c97f2de5b638e9e443dd30
-libsdl2|appends/libsdl2_2.0.4.bbappend|2b52c939aa5d7058b70ffee36b6a69be
-libndl-directmedia2|appends/libndl-directmedia2.bbappend|5a8acd47b765124507c50a11c09b8620
