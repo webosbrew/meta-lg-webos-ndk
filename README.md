@@ -24,6 +24,21 @@ Feel free to create an issue, or create a pull request.
 
 ## Build Instructions
 
+### System Requirements
+
+I built the NDK with a virtual machine running Ubuntu 16.04, which has 10 GB of RAM and 8 CPU cores. Minimum system requirement would be roughly
+
+* 4 CPU cores
+* 8 GB of RAM
+* 200 GB of disk storage. 50 GB for fetched sources and more than 100 GB for build files.
+
+On my computer (Ubuntu 16.04 in VirtualBox running on machine i9-9980HK, 32 GB DDR4-2666 and an entry level NVME SSD running Windows 10),
+it took around 6 hours without any performance tweaks. The build failed somewhere when I tried to build with Ubuntu 18.04, or Debian 10.
+
+After you got your build system ready, let's get started.
+
+### Build Steps
+
 To build the NDK, you'll need to follow instructions provided by webOS OSE:
 [Building webOS Open Source Edition](https://www.webosose.org/docs/guides/setup/building-webos-ose/), with few more simple steps to add this layer.
 
