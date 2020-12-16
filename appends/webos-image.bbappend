@@ -4,4 +4,4 @@ TOOLCHAIN_TARGET_TASK += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-pl
 
 TOOLCHAIN_TARGET_TASK += "qtmultimedia"
 
-TOOLCHAIN_TARGET_TASK += "ffmpeg"
+#TOOLCHAIN_TARGET_TASK += "ffmpeg"
