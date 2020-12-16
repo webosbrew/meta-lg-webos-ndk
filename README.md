@@ -28,10 +28,10 @@ To build the NDK, you'll need to follow instructions provided by webOS OSE:
 [Building webOS Open Source Edition](https://www.webosose.org/docs/guides/setup/building-webos-ose/), with few more simple steps to add this layer.
 
 1. After finishing the step [Cloning the Repository](https://www.webosose.org/docs/guides/setup/building-webos-ose/), add this layer to `weboslayers.py`:
-```
-  ('meta-webos-raspberrypi',    51, 'git://github.com/webosose/meta-webosose.git',            '', ''),
-+ ('meta-lg-webos-ndk',         99, 'git@github.com:webosbrew/meta-lg-webos-ndk.git',         'branch=main', ''),
-  ]
+```diff
+ ('meta-webos-raspberrypi',    51, 'git://github.com/webosose/meta-webosose.git',            '', ''),
++('meta-lg-webos-ndk',         99, 'git@github.com:webosbrew/meta-lg-webos-ndk.git',         'branch=main', ''),
+ ]
 ```
 
 2. Continue build the system. If you can see Build Configuration below, then this layer is applied correctly.
