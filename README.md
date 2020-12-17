@@ -14,15 +14,15 @@ So changes were made to build an image with `softfp` option.
 And some important system libraries are updated to reflect what's running in the real TV,
 in order to maintain compatibility. More specifically:
 
-* GStreamer was updated to 1.14.0, and included in NDK.
-* SDL2 was updated to 2.0.5. Also, SDL2-image, SDL2-mixer and SDL2-ttf was included in NDK.
-* `libwayland-egl.so.1`'s name was changed to `libwayland-egl.so.0`, to reflect lib version on TV.
-* Qt Multimedia was included in NDK
+* GStreamer was updated to 1.14.0, and included.
+* SDL2 was updated to 2.0.5. Also, SDL2-image, SDL2-mixer SDL2-net, and SDL2-ttf was included.
+* `libwayland-egl.so.1`'s name was changed to `libwayland-egl.so.0`, for linking against correct library name on TV.
+* Qt Multimedia was included.
 
 By exploring more and more inside real TV, you may find there're something needs to be added.
 Feel free to create an issue, or create a pull request.
 
-## Build Instructions
+## SDK Build Instructions
 
 ### System Requirements
 
@@ -42,14 +42,23 @@ After you got your build system ready, let's get started.
 To build the NDK, you'll need to follow instructions provided by webOS OSE:
 [Building webOS Open Source Edition](https://www.webosose.org/docs/guides/setup/building-webos-ose/), with few more simple steps to add this layer.
 
-1. After finishing the step [Cloning the Repository](https://www.webosose.org/docs/guides/setup/building-webos-ose/), add this layer to `weboslayers.py`:
+After finishing the step [Cloning the Repository](https://www.webosose.org/docs/guides/setup/building-webos-ose/)
+
+1. Checkout to `builds/master/1` tag, which is their first version:
+```bash
+git checkout builds/master/1 # Or add `-b [branch-name]` to start your work on a new branch
+```
+
+Note: this version was tested and verified to be work with my TV model. But you can try other versions.
+
+2. Add this layer to `weboslayers.py`, please note the highest proprity `99` among all the layers:
 ```diff
  ('meta-webos-raspberrypi',    51, 'git://github.com/webosose/meta-webosose.git',            '', ''),
 +('meta-lg-webos-ndk',         99, 'git@github.com:webosbrew/meta-lg-webos-ndk.git',         'branch=main', ''),
  ]
 ```
 
-2. Continue build the system. If you can see Build Configuration below, then this layer is applied correctly.
+2. Continue building. If you can see Build Configuration below, then this layer is applied correctly.
 ```
 Build Configuration:
 BB_VERSION        = "1.32.0"
@@ -85,8 +94,31 @@ meta              = "morty:1718f0a6c1de9c23660a9bebfd4420e3c4ed37e6"
 3. After system image built, follow this instruction to build the NDK: 
 [Native Development Kit Setup](https://www.webosose.org/docs/guides/setup/setting-up-native-development-kit/)
 
-4. Now you can build some executables using this NDK! But Not for Qt programs. There's no tools such as `qmake` yet.
-You will need to copy `sysroots/x86_64-linux` to somewhere else, `qmake` is inside this directory.
-TODO: This section may be incorrect; Also there should be some better way to ship this part in the NDK installer.
+4. All this should just take some time.
 
-5. To be completed...
+## Development Instructions
+
+Developing programs with this NDK should be similar to other embedded Linux systems.
+First you install the NDK: [Run the NDK Installer](https://www.webosose.org/docs/guides/setup/setting-up-native-development-kit/#run-the-ndk-installer). After you installed this NDK, you can use it for later.
+
+### Compile Program by Command Line
+
+In most cases, you'll first need to [Run the Environment Setup Script](https://www.webosose.org/docs/guides/setup/setting-up-native-development-kit/#run-the-environment-setup-script).
+
+#### CMake
+
+Nothing special.
+
+```bash
+cd project-directory
+mkdir build
+cd build
+cmake ..
+make
+```
+
+### Use with IDE
+
+#### VS Code
+
+TODO: To be completed...
