@@ -1,0 +1,36 @@
+diff --git a/src/PmLogLib.c b/src/PmLogLib.c
+index 6f03b24..2282527 100644
+--- a/src/PmLogLib.c
++++ b/src/PmLogLib.c
+@@ -158,22 +158,25 @@ void CallSysLog(const char *context, const int level, const char* pidtid, const
+      ***********************************************************************/
+     #define DbgPrint(...) \
+         {                                                                           \
+-            fprintf(stdout, COMPONENT_PREFIX __VA_ARGS__);                          \
+-            CallSysLog(COMPONENT_PREFIX, "[]", __VA_ARGS__)                         \
++            fprintf(stdout, COMPONENT_PREFIX " ");                                  \
++            fprintf(stdout, __VA_ARGS__);                                           \
++            CallSysLog(COMPONENT_PREFIX, LOG_DEBUG, "[]", __VA_ARGS__);             \
+         }
+ 
+     #define ErrPrint(context, pidtid, ...) \
+         {                                                                           \
+-            fprintf(stderr, context __VA_ARGS__);                                   \
++            fprintf(stderr, "%s ", context);                                        \
++            fprintf(stderr, __VA_ARGS__);                                           \
+             fprintf(stderr, "\n");                                                  \
+-            CallSysLog(context, pidtid, __VA_ARGS__);                               \
++            CallSysLog(context, LOG_ERR, pidtid, __VA_ARGS__);                      \
+         }
+ 
+     #define WarnPrint(context, pidtid, ...) \
+         {                                                                           \
+-            fprintf(stderr, context __VA_ARGS__);                                   \
++            fprintf(stderr, "%s ", context);                                        \
++            fprintf(stderr, __VA_ARGS__);                                           \
+             fprintf(stderr, "\n");                                                  \
+-            CallSysLog(context, pidtid, __VA_ARGS__);                               \
++            CallSysLog(context, LOG_WARNING, pidtid, __VA_ARGS__);                  \
+         }
+ #else
+     /***********************************************************************
