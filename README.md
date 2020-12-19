@@ -107,13 +107,13 @@ In most cases, you'll first need to [Run the Environment Setup Script](https://w
 
 #### CMake
 
-Nothing special.
+Nothing special. For Qt project, you may need to use [CMake Toolchains](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling).
 
 ```bash
 cd project-directory
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_TOOLCHAIN_FILE=/opt/webos-sdk-x86_64/1.0.g/sysroots/x86_64-webossdk-linux/usr/share/cmake/OEToolchainConfig.cmake
 make
 ```
 
@@ -121,4 +121,24 @@ make
 
 #### VS Code
 
-TODO: To be completed...
+1. Install [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+2. Add following kit (please modify the path if you've changed install location of NDK)
+
+```json
+[
+  {
+    "name": "webOS NDK 1.0.g",
+    "environmentSetupScript": "/opt/webos-sdk-x86_64/1.0.g/environment-setup-armv7a-neon-webos-linux-gnueabi",
+    "toolchainFile": "/opt/webos-sdk-x86_64/1.0.g/sysroots/x86_64-webossdk-linux/usr/share/cmake/OEToolchainConfig.cmake"
+  }
+]
+```
+### Useful tips
+
+#### GDB
+
+The GDB shipped with Developer Mode has one library missing: `libreadline.so.6`. You can copy it from NDK, to `/media/developer/lib` on your TV.
+
+#### System library logging
+
+webOS often uses PmLogLib for logging. And you can't see the log in end-user products. `libPmLogLib.so.3` is modified in this NDK so it will print all the logs into `stdout` and `stderr`. You can also copy this into `/media/developer/lib`, and modify `LD_LIBRARY_PATH` environment variable to make executables load this library first.
