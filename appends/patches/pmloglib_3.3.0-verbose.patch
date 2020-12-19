@@ -1,7 +1,29 @@
 diff --git a/src/PmLogLib.c b/src/PmLogLib.c
-index 6f03b24..2282527 100644
+index 6f03b24..27ea9e8 100644
 --- a/src/PmLogLib.c
 +++ b/src/PmLogLib.c
+@@ -72,8 +72,8 @@ static PmLogGlobals defaultSet =
+     {
+        .info =
+        {
+-           .enabledLevel = kPmLogLevel_Info,
+-           .flags = 0
++           .enabledLevel = kPmLogLevel_Debug,
++           .flags = kPmLogFlag_LogToConsole
+        },
+        .component = kPmLogGlobalContextName
+     }
+@@ -109,8 +109,8 @@ pid_t gettid(void)
+ #define LOG_LEVEL_TAG       "level"
+ 
+ #define BUFFER_LEN 1024
+-#define CONFIG_DIR WEBOS_INSTALL_SYSCONFDIR "/pmlog.d"
+-#define OVERRIDES_CONF WEBOS_INSTALL_PREFERENCESDIR "/pmloglib/overrides.conf"
++#define CONFIG_DIR WEBOS_INSTALL_DEVELOPERDIR "/.local" WEBOS_INSTALL_SYSCONFDIR "/pmlog.d"
++#define OVERRIDES_CONF WEBOS_INSTALL_DEVELOPERDIR "/.local" WEBOS_INSTALL_PREFERENCESDIR "/pmloglib/overrides.conf"
+ #define MSGID_LEN 32
+ #define PIDSTR_LEN 32
+ 
 @@ -158,22 +158,25 @@ void CallSysLog(const char *context, const int level, const char* pidtid, const
       ***********************************************************************/
      #define DbgPrint(...) \
