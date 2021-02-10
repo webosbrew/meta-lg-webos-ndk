@@ -6,7 +6,7 @@
       Uint32 type;        /**< ::SDL_KEYDOWN or ::SDL_KEYUP */
       Uint32 timestamp;
       Uint32 windowID;    /**< The window with keyboard focus, if any */
-+     Uint32 inputDevice; /**< webOS specific field */
++     Uint32 inputSource; /**< webOS specific field */
       Uint8 state;        /**< ::SDL_PRESSED or ::SDL_RELEASED */
       Uint8 repeat;       /**< Non-zero if this is a key repeat */
       Uint8 padding2;
@@ -16,7 +16,7 @@
       Uint32 type;                                /**< ::SDL_TEXTEDITING */
       Uint32 timestamp;
       Uint32 windowID;                            /**< The window with keyboard focus, if any */
-+     Uint32 inputDevice;                         /**< webOS specific field */
++     Uint32 inputSource;                         /**< webOS specific field */
       char text[SDL_TEXTEDITINGEVENT_TEXT_SIZE];  /**< The editing text */
       Sint32 start;                               /**< The start cursor of selected editing text */
       Sint32 length;                              /**< The length of selected editing text */
@@ -26,7 +26,7 @@
       Uint32 type;                              /**< ::SDL_TEXTINPUT */
       Uint32 timestamp;
       Uint32 windowID;                          /**< The window with keyboard focus, if any */
-+     Uint32 inputDevice;                       /**< webOS specific field */
++     Uint32 inputSource;                       /**< webOS specific field */
       char text[SDL_TEXTINPUTEVENT_TEXT_SIZE];  /**< The input text */
   } SDL_TextInputEvent;
   
