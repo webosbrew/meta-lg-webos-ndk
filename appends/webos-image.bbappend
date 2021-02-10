@@ -7,6 +7,9 @@ TOOLCHAIN_TARGET_TASK += "qtmultimedia"
 # Include CMake in SDL
 TOOLCHAIN_TARGET_TASK += "cmake"
 
+# Not available in real device
+TOOLCHAIN_TARGET_TASK_remove += "libndl-directmedia2 ffmpeg"
+
 # Add CMake related configs and tools
 TOOLCHAIN_HOST_TASK += "nativesdk-cmake"
 # Add Qt Toolchain Tools (e.g. qmake)
