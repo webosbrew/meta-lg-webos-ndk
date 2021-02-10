@@ -20,7 +20,7 @@ SRC_URI = " \
     file://0001-prepend-our-sysroot-path-so-that-make-finds-our-wayl.patch \
     file://0002-Avoid-finding-build-host-s-wayland-scanner.patch \
     file://fix-build-failure-on-ppc.patch \
-    file://webos-specific.patch \
+    file://webos-input-structs.patch \
 "
 
 S = "${WORKDIR}/SDL2-${PV}"
