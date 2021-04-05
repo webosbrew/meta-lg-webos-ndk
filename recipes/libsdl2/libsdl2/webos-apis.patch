@@ -11,7 +11,7 @@ diff -ruN a/include/SDL_webOS.h b/include/SDL_webOS.h
 +#ifndef _SDL_webOS_h
 +#define _SDL_webOS_h
 +
-+#include "SDL_types.h"
++#include "SDL_stdinc.h"
 +#include "SDL_rect.h"
 +
 +#include "begin_code.h"
@@ -41,21 +41,21 @@ diff -ruN a/include/SDL_webOS.h b/include/SDL_webOS.h
 +#define SDL_WEBOS_EXPORED_WINDOW_TYPE_TRANSPARENT 2
 +#define SDL_WEBOS_EXPORED_WINDOW_TYPE_OPAQUE 3
 +
-+extern DECLSPEC SDL_bool SDL_webOSCursorVisibility(SDL_bool visible);
++extern DECLSPEC SDL_bool SDLCALL SDL_webOSCursorVisibility(SDL_bool visible);
 +
-+extern DECLSPEC SDL_bool SDL_webOSGetPanelResolution(int *width, int *height);
++extern DECLSPEC SDL_bool SDLCALL SDL_webOSGetPanelResolution(int *width, int *height);
 +
-+extern DECLSPEC SDL_bool SDL_webOSGetRefreshRate(int *rate);
++extern DECLSPEC SDL_bool SDLCALL SDL_webOSGetRefreshRate(int *rate);
 +
-+extern DECLSPEC const char *SDL_webOSCreateExportedWindow(int type);
++extern DECLSPEC const char *SDLCALL SDL_webOSCreateExportedWindow(int type);
 +
-+extern DECLSPEC SDL_bool SDL_webOSSetExportedWindow(const char *windowId, SDL_Rect *src, SDL_Rect *dst);
++extern DECLSPEC SDL_bool SDLCALL SDL_webOSSetExportedWindow(const char *windowId, SDL_Rect *src, SDL_Rect *dst);
 +
-+extern DECLSPEC SDL_bool SDL_webOSExportedSetCropRegion(const char *windowId, SDL_Rect *org, SDL_Rect *src, SDL_Rect *dst);
++extern DECLSPEC SDL_bool SDLCALL SDL_webOSExportedSetCropRegion(const char *windowId, SDL_Rect *org, SDL_Rect *src, SDL_Rect *dst);
 +
-+extern DECLSPEC SDL_bool SDL_webOSExportedSetProperty(const char *windowId, const char *name, const char *value);
++extern DECLSPEC SDL_bool SDLCALL SDL_webOSExportedSetProperty(const char *windowId, const char *name, const char *value);
 +
-+extern DECLSPEC void SDL_webOSDestroyExportedWindow(const char *windowId);
++extern DECLSPEC void SDLCALL SDL_webOSDestroyExportedWindow(const char *windowId);
 +/* Ends C function definitions when using C++ */
 +#ifdef __cplusplus
 +}
@@ -85,3 +85,26 @@ diff -ruN a/src/SDL_webOS.c b/src/SDL_webOS.c
 +SDL_bool SDL_webOSExportedSetProperty(const char *windowId, const char *name, const char *value) { return SDL_FALSE; }
 +
 +void SDL_webOSDestroyExportedWindow(const char *windowId) {}
+diff -ruN a/include/SDL.h b/include/SDL.h
+--- a/include/SDL.h	2016-10-20 12:56:26.000000000 +0900
++++ b/include/SDL.h	2021-04-06 00:07:52.080358457 +0900
+@@ -56,6 +56,7 @@
+ #include "SDL_timer.h"
+ #include "SDL_version.h"
+ #include "SDL_video.h"
++#include "SDL_webOS.h"
+ 
+ #include "begin_code.h"
+ /* Set up for C function definitions, even when using C++ */
+ 
+diff -ruN a/Makefile.in b/Makefile.in
+--- a/Makefile.in	2016-10-20 12:56:26.000000000 +0900
++++ b/Makefile.in	2021-04-05 23:55:45.499784333 +0900
+@@ -112,6 +112,7 @@
+ 	SDL_types.h \
+ 	SDL_version.h \
+ 	SDL_video.h \
++	SDL_webOS.h \
+ 	begin_code.h \
+ 	close_code.h
+ 
