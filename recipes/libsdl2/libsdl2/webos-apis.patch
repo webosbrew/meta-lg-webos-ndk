@@ -67,7 +67,7 @@ diff -ruN a/src/SDL_webOS.c b/src/SDL_webOS.c
 --- a/src/SDL_webOS.c	1970-01-01 09:00:00.000000000 +0900
 +++ b/src/SDL_webOS.c	2021-04-05 23:17:25.424142600 +0900
 @@ -0,0 +1,18 @@
-+#include "./SDL_internal.h"
++#include "./SDL_config.h"
 +#include "SDL_webOS.h"
 +
 +SDL_bool SDL_webOSCursorVisibility(SDL_bool visible) { return SDL_FALSE; }
