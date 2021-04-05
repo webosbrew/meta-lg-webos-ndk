@@ -1,0 +1,87 @@
+diff -ruN a/include/SDL_webOS.h b/include/SDL_webOS.h
+--- a/include/SDL_webOS.h	1970-01-01 09:00:00.000000000 +0900
++++ b/include/SDL_webOS.h	2021-04-05 23:20:58.026000000 +0900
+@@ -0,0 +1,61 @@
++/**
++ *  \file SDL_webOS.h
++ *
++ *  Include file for SDL webOS specific APIs.
++ */
++
++#ifndef _SDL_webOS_h
++#define _SDL_webOS_h
++
++#include "SDL_types.h"
++#include "SDL_rect.h"
++
++#include "begin_code.h"
++/* Set up for C function definitions, even when using C++ */
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++#define SDL_HINT_WEBOS_ACCESS_POLICY_KEYS_BACK "SDL_WEBOS_ACCESS_POLICY_KEYS_BACK"
++#define SDL_HINT_WEBOS_ACCESS_POLICY_KEYS_EXIT "SDL_WEBOS_ACCESS_POLICY_KEYS_EXIT"
++#define SDL_HINT_WEBOS_CURSOR_SLEEP_TIME "SDL_WEBOS_CURSOR_SLEEP_TIME"
++#define SDL_HINT_WEBOS_REGISTER_APP "SDL_HINT_WEBOS_REGISTER_APP"
++
++#define SDL_WEBOS_SCANCODE_CH_UP 480
++#define SDL_WEBOS_SCANCODE_CH_DOWN 481
++#define SDL_WEBOS_SCANCODE_BACK 482
++#define SDL_WEBOS_SCANCODE_CURSOR_SHOW 484
++#define SDL_WEBOS_SCANCODE_CURSOR_HIDE 485
++#define SDL_WEBOS_SCANCODE_RED 486
++#define SDL_WEBOS_SCANCODE_GREEN 487
++#define SDL_WEBOS_SCANCODE_YELLOW 488
++#define SDL_WEBOS_SCANCODE_BLUE 489
++#define SDL_WEBOS_SCANCODE_EXIT 505
++
++#define SDL_WEBOS_EXPORED_WINDOW_TYPE_VIDEO 0
++#define SDL_WEBOS_EXPORED_WINDOW_TYPE_SUBTITLE 1
++#define SDL_WEBOS_EXPORED_WINDOW_TYPE_TRANSPARENT 2
++#define SDL_WEBOS_EXPORED_WINDOW_TYPE_OPAQUE 3
++
++extern DECLSPEC SDL_bool SDL_webOSCursorVisibility(SDL_bool visible);
++
++extern DECLSPEC SDL_bool SDL_webOSGetPanelResolution(int *width, int *height);
++
++extern DECLSPEC SDL_bool SDL_webOSGetRefreshRate(int *rate);
++
++extern DECLSPEC const char *SDL_webOSCreateExportedWindow(int type);
++
++extern DECLSPEC SDL_bool SDL_webOSSetExportedWindow(const char *windowId, SDL_Rect *src, SDL_Rect *dst);
++
++extern DECLSPEC SDL_bool SDL_webOSExportedSetCropRegion(const char *windowId, SDL_Rect *org, SDL_Rect *src, SDL_Rect *dst);
++
++extern DECLSPEC SDL_bool SDL_webOSExportedSetProperty(const char *windowId, const char *name, const char *value);
++
++extern DECLSPEC void SDL_webOSDestroyExportedWindow(const char *windowId);
++/* Ends C function definitions when using C++ */
++#ifdef __cplusplus
++}
++#endif
++#include "close_code.h"
++
++#endif /* _SDL_webOS_h */
+diff -ruN a/src/SDL_webOS.c b/src/SDL_webOS.c
+--- a/src/SDL_webOS.c	1970-01-01 09:00:00.000000000 +0900
++++ b/src/SDL_webOS.c	2021-04-05 23:17:25.424142600 +0900
+@@ -0,0 +1,18 @@
++#include "./SDL_internal.h"
++#include "SDL_webOS.h"
++
++SDL_bool SDL_webOSCursorVisibility(SDL_bool visible) { return SDL_FALSE; }
++
++SDL_bool SDL_webOSGetPanelResolution(int *width, int *height) { return SDL_FALSE; }
++
++SDL_bool SDL_webOSGetRefreshRate(int *rate) { return SDL_FALSE; }
++
++const char *SDL_webOSCreateExportedWindow(int type) { return NULL; }
++
++SDL_bool SDL_webOSSetExportedWindow(const char *windowId, SDL_Rect *src, SDL_Rect *dst) { return SDL_FALSE; }
++
++SDL_bool SDL_webOSExportedSetCropRegion(const char *windowId, SDL_Rect *org, SDL_Rect *src, SDL_Rect *dst) { return SDL_FALSE; }
++
++SDL_bool SDL_webOSExportedSetProperty(const char *windowId, const char *name, const char *value) { return SDL_FALSE; }
++
++void SDL_webOSDestroyExportedWindow(const char *windowId) {}

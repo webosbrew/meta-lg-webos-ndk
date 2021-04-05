@@ -21,6 +21,7 @@ SRC_URI = " \
     file://0002-Avoid-finding-build-host-s-wayland-scanner.patch \
     file://fix-build-failure-on-ppc.patch \
     file://webos-input-structs.patch \
+    file://webos-apis.patch \
 "
 
 S = "${WORKDIR}/SDL2-${PV}"
