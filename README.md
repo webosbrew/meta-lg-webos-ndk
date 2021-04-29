@@ -105,6 +105,10 @@ First you install the NDK: [Run the NDK Installer](https://www.webosose.org/docs
 
 In most cases, you'll first need to [Run the Environment Setup Script](https://www.webosose.org/docs/guides/setup/setting-up-native-development-kit/#run-the-environment-setup-script).
 
+```bash
+source /opt/webos-sdk-x86_64/1.0.g/environment-setup-armv7a-neon-webos-linux-gnueabi
+```
+
 #### CMake
 
 Nothing special. For Qt project, you may need to use [CMake Toolchains](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html#cross-compiling).
