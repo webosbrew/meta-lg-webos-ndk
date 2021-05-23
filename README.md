@@ -47,6 +47,7 @@ adduser [any username you like]
 adduser [username] sudo
 echo '[username] ALL=NOPASSWD: ALL' > /etc/sudoers.d/nopasswd # Not a good practice though
 echo 'ubuntu' > /etc/debian_chroot # Helps you to distinguish from your host
+echo 'deb http://archive.ubuntu.com/ubuntu xenial main universe multiverse restricted' > /etc/apt/sources.list
 ```
 
 Create `tchroot` in your $PATH. (Credit: https://gist.github.com/schtobia/ea1b786d915415f86099)
