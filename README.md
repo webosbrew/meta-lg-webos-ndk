@@ -46,7 +46,23 @@ echo '[username] ALL=NOPASSWD: ALL' > /etc/sudoers.d/nopasswd # Not a good pract
 echo 'ubuntu' > /etc/debian_chroot # Helps you to distinguish from your host
 ```
 
-Then use `chroot ./ubuntu-16.04 su [username]` as your build system.
+Create `tchroot` in your $PATH. (Credit: https://gist.github.com/schtobia/ea1b786d915415f86099)
+
+```sh
+#! /bin/sh
+[ ! -d "$1" ] && echo "$1 is not a valid directory." && exit 1;
+trap "umount \"${1}\"/tmp \"${1}\"/dev/null \"${1}\"/dev/pts \"${1}\"/dev/random \"${1}\"/dev/shm \"${1}\"/dev/urandom \"${1}\"/proc" EXIT INT TERM HUP PIPE &&
+    mount --bind /tmp "${1}/tmp" && \
+    mount --bind /dev/null "${1}/dev/null" && \
+    mount --bind /dev/pts "${1}/dev/pts" && \
+    mount --bind /dev/random "${1}/dev/random" && \
+    mount --bind /dev/shm "${1}/dev/shm" && \
+    mount --bind /dev/urandom "${1}/dev/urandom" && \
+    mount --bind /proc "${1}/proc" && \
+    chroot "$@";
+```
+
+Then use `tchroot ./ubuntu-16.04 su [username]` as your build system.
 
 After you got your build system ready, let's get started.
 
