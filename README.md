@@ -54,7 +54,7 @@ Note: this version was tested and verified to be work with my TV model. But you 
 2. Add this layer to `weboslayers.py`, please note the highest proprity `99` among all the layers:
 ```diff
  ('meta-webos-raspberrypi',    51, 'git://github.com/webosose/meta-webosose.git',            '', ''),
-+('meta-lg-webos-ndk',         99, 'git@github.com:webosbrew/meta-lg-webos-ndk.git',         'branch=main', ''),
++('meta-lg-webos-ndk',         99, 'git://github.com/webosbrew/meta-lg-webos-ndk.git',       'branch=main', ''),
  ]
 ```
 
