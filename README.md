@@ -62,7 +62,7 @@ trap "umount \"${1}\"/tmp \"${1}\"/dev/null \"${1}\"/dev/pts \"${1}\"/dev/random
     chroot "$@";
 ```
 
-Then use `tchroot ./ubuntu-16.04 su [username]` as your build system.
+Then use `sudo tchroot ./ubuntu-16.04 su [username]` as your build system.
 
 After you got your build system ready, let's get started.
 
