@@ -37,7 +37,10 @@ it took around 6 hours without any performance tweaks. The build failed somewher
 
 #### Tips: Use Chroot to Fake an Ubuntu 16.04 System
 
+Run following commands as root.
+
 ```shell
+apt-get install debootstrap
 debootstrap --arch=amd64 xenial ./ubuntu-16.04 http://archive.ubuntu.com/ubuntu/
 chroot ./ubuntu-16.04
 adduser [any username you like]
