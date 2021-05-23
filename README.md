@@ -43,6 +43,7 @@ chroot ./ubuntu-16.04
 adduser [any username you like]
 adduser [username] sudo
 echo '[username] ALL=NOPASSWD: ALL' > /etc/sudoers.d/nopasswd # Not a good practice though
+echo 'ubuntu' > /etc/debian_chroot # Helps you to distinguish from your host
 ```
 
 Then use `chroot ./ubuntu-16.04 su [username]` as your build system.
