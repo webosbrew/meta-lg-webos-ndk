@@ -1,3 +1,5 @@
+# [Download Prebuilt NDK Directly](https://github.com/webosbrew/meta-lg-webos-ndk/releases)
+
 # Config Layer to Build NDK For LG webOS TV
 
 This layer overrides some configuration in webOS OSE, to generate a native SDK (unofficial) suitable for LG webOS TV.
