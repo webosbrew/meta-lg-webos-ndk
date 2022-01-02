@@ -5,7 +5,7 @@ DEPENDS_${PN} = "nativesdk-cmake"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
 
 SRC_URI = "git://github.com/webosbrew/native-dev-utils.git;protocol=http;branch=main"
-SRCREV = "e2ee60abc20a3120557d3875cdc7c3e0ab229e51"
+SRCREV = "68c4dbadf52935510c7ead199ca3f40db786f75c"
 S = "${WORKDIR}/git"
 
 inherit nativesdk
