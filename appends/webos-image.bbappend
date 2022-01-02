@@ -5,3 +5,6 @@ TOOLCHAIN_TARGET_TASK += "gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-pl
 
 # Not available in real device
 TOOLCHAIN_TARGET_TASK_remove += "libndl-directmedia2 ffmpeg"
+
+# Add CMake related configs and tools
+TOOLCHAIN_HOST_TASK += "nativesdk-cmake nativesdk-dev-utils"
