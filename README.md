@@ -1,4 +1,5 @@
-# [Download Prebuilt NDK Directly](https://github.com/webosbrew/meta-lg-webos-ndk/releases)
+# [Try better toolchains with newest compiler!](https://github.com/openlgtv/buildroot-nc4)
+[or download Prebuilt NDK Directly](https://github.com/webosbrew/meta-lg-webos-ndk/releases)
 
 # Config Layer to Build NDK For LG webOS TV
 
