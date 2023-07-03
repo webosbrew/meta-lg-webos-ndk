@@ -1,5 +1,4 @@
-# [Try better toolchain with newest compiler!](https://github.com/openlgtv/buildroot-nc4)
-[or download Prebuilt NDK Directly](https://github.com/webosbrew/meta-lg-webos-ndk/releases)
+# Deprecated as of 2023-07-03. Use [toolchains linked in this repo](https://github.com/webosbrew/native-toolchain) instead
 
 # Config Layer to Build NDK For LG webOS TV
 
